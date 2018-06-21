@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 
+import style from './index.module.css'
+
 export class DropDown extends React.Component {
 
   state = {

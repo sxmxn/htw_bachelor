@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import DropDown from '../../components/DropDown'
 
+import style from './index.module.css'
+
 class VehicleForm extends Component {
 
   constructor(props) {
@@ -38,7 +40,9 @@ class VehicleForm extends Component {
   render() {
     return (
       <form onSubmit={this.handleSubmit}>
-        <DropDown sendData={this.handleVehicleTyp}/>
+        <div>
+         <DropDown sendData={this.handleVehicleTyp}/>
+        </div>
         <label>
           Kapazität der Fahrzeuge in kg:
           <input type="number" pattern="[0-9]*" value={this.state.capacity} onChange={this.handleCapacity}/>
