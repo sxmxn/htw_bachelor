@@ -7,7 +7,8 @@ class VehicleForm extends Component {
     super(props);
     this.state =  {
       vehicle: '' ,
-      number: 1
+      number: 1,
+      capacity: 100
     };
 
     this.handleVehicleTyp = this.handleVehicleTyp.bind(this);
@@ -24,6 +25,10 @@ class VehicleForm extends Component {
     this.setState({number: number})
   }
 
+  handleCapacity(event){
+    const capacity = parseInt(event.target.value, 10)
+    this.setState({capacity: capacity})
+  }
 
   handleSubmit(event){
     console.log(this.state)
@@ -34,6 +39,10 @@ class VehicleForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <DropDown sendData={this.handleVehicleTyp}/>
+        <label>
+          Kapazität der Fahrzeuge in kg:
+          <input type="number" pattern="[0-9]*" value={this.state.capacity} onChange={this.handleCapacity}/>
+        </label>
         <label>
           Anzahl der Fahrzeuge:
           <input type="number" pattern="[0-9]*" value={this.state.number} onChange={this.handleNumber}/>
