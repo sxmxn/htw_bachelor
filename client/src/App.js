@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 // components
@@ -21,16 +20,11 @@ class App extends React.Component {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
         <HelloH1/>
         <DropDown sendData={this.handleLanguage}/>
         Average speed (km/h) of this vehicle: {this.state.vehicle}
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
