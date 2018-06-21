@@ -3,18 +3,43 @@ import DropDown from '../../components/DropDown'
 
 class VehicleForm extends Component {
 
-  state =  { vehicle: '' }
+  constructor(props) {
+    super(props);
+    this.state =  {
+      vehicle: '' ,
+      number: 1
+    };
 
-  handleLanguage = (langValue) => {
-    this.setState({vehicle: langValue});
+    this.handleVehicleTyp = this.handleVehicleTyp.bind(this);
+    this.handleNumber = this.handleNumber.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  handleVehicleTyp = (Value) => {
+    this.setState({vehicle: Value});
+  };
+
+  handleNumber(event){
+    const number = parseInt(event.target.value, 10)
+    this.setState({number: number})
+  }
+
+
+  handleSubmit(event){
+    console.log(this.state)
+    event.preventDefault();
   }
 
   render() {
     return (
-      <div>
-        <DropDown sendData={this.handleLanguage}/>
-        Average speed (km/h) of this vehicle: {this.state.vehicle}
-      </div>
+      <form onSubmit={this.handleSubmit}>
+        <DropDown sendData={this.handleVehicleTyp}/>
+        <label>
+          Anzahl der Fahrzeuge:
+          <input type="number" pattern="[0-9]*" value={this.state.number} onChange={this.handleNumber}/>
+        </label>
+        <input type="submit" value="Submit" />
+      </form>
     );
   }
 }

@@ -11,7 +11,7 @@ export class DropDown extends React.Component {
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
     this.props.sendData(selectedOption.value);
-    console.log(`Selected: ${selectedOption.value}`);
+    //console.log(`Selected: ${selectedOption.value}`);
   };
 
   render() {
@@ -24,9 +24,9 @@ export class DropDown extends React.Component {
           Pick your vehicle:
           <Dropdown
             options={[
-            { label: 'eVan', value: 40 },
-            { label: 'Trike', value: 20 },
-            { label: 'Bike', value: 25}
+            { label: 'eVan', value: { name: 'eVan', speed:40 }},
+            { label: 'Trike', value: { name: 'Trike', speed:20 }},
+            { label: 'Bike', value:{ name: 'Bike', speed:25 }}
           ]} onChange={this.handleChange} value={selectedOption} placeholder="Select an option" />
         </label>
       </div>
