@@ -9,9 +9,13 @@ import DropDown from './components/DropDown'
 import data from './data.json';
 
 
-  class App extends Component {
+class App extends React.Component {
 
+  state =  { vehicle: '' }
 
+  handleLanguage = (langValue) => {
+    this.setState({vehicle: langValue});
+  }
 
   render() {
     return (
@@ -21,7 +25,8 @@ import data from './data.json';
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
         <HelloH1/>
-        <DropDown/>
+        <DropDown sendData={this.handleLanguage}/>
+        Average speed (km/h) of this vehicle: {this.state.vehicle}
         <p className="App-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
