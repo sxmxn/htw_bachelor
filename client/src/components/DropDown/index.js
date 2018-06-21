@@ -1,40 +1,39 @@
 import React, { Component } from 'react';
+import Dropdown from 'react-dropdown'
+import 'react-dropdown/style.css'
 
-class FlavorForm extends React.Component {
+class DropDown extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {value: this.props.data[0].evan};
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  state = {
+    selectedOption: '',
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-    console.log(this.state)
-  }
-
-  handleSubmit(event) {
-    alert('Your selected vehicle is: ' + this.state.value);
-    event.preventDefault();
-  }
+  handleChange = (selectedOption) => {
+    this.setState({ selectedOption });
+    // selectedOption can be null when the `x` (close) button is clicked
+    if (selectedOption) {
+      console.log(`Selected: ${selectedOption.value}`);
+    }
+  };
 
   render() {
+
+    const { selectedOption } = this.state;
+
     return (
-      <form onSubmit={this.handleSubmit}>
+      <div>
         <label>
           Pick your vehicle:
-          <select value={this.state.value} onChange={this.handleChange}>
-            <option value={this.props.data[0].evan}>eVan</option>
-            <option value={this.props.data[0].trike} >Trike</option>
-            <option value={this.props.data[0].bike}>Bike</option>
-          </select>
+          <Dropdown options={[
+            { label: 'eVan', value: 40 },
+            { label: 'Trike', value: 20 },
+            { label: 'Bike', value: 25}
+          ]} onChange={this.handleChange} value={selectedOption} placeholder="Select an option" />
         </label>
-        <input type="submit" value="Submit" />
-      </form>
+        {selectedOption.label}
+      </div>
     );
   }
 }
 
-export default FlavorForm
+export default DropDown
