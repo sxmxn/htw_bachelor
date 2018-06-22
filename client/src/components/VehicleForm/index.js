@@ -10,7 +10,7 @@ class VehicleForm extends Component {
       value: {name: 'eVan', speed: 40},
       number: 1,
       capacity: 100,
-      hobbies: [
+      vehicles: [
       ]
     };
 
@@ -18,6 +18,7 @@ class VehicleForm extends Component {
     this.handleCapacity = this.handleCapacity.bind(this);
     this.handleValueOfDropDown = this.handleValueOfDropDown.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.deleteLastVehicle = this.deleteLastVehicle.bind(this);
 
   }
 
@@ -27,10 +28,10 @@ class VehicleForm extends Component {
         this.setState({value: {name: 'eVan', speed: 40}});
         break;
       case 'trike':
-        this.setState({value: {name: 'trike', speed: 20}});
+        this.setState({value: {name: 'Trike', speed: 20}});
         break;
       case 'bike':
-        this.setState({value: {name: 'bike', speed: 25}});
+        this.setState({value: {name: 'Bike', speed: 25}});
         break;
     }
 
@@ -48,22 +49,30 @@ class VehicleForm extends Component {
 
   handleSubmit(event){
     //console.log(this.state)
-    let currentHobbies = this.state.hobbies;
-    currentHobbies.push(this.state.value.name);
+    let currentVehicles = this.state.vehicles;
+    currentVehicles.push(this.state.number + " " + this.state.value.name+ "(s)" + " (" + this.state.capacity + "kg)");
       this.setState({
-        hobbies: currentHobbies
+        vehicles: currentVehicles
       });
     this.props.sendData(this.state);
     event.preventDefault();
   }
 
+  deleteLastVehicle(event){
+    let currentVehicles = this.state.vehicles;
+    currentVehicles.pop();
+    this.setState({
+      vehicles: currentVehicles
+    });
+    event.preventDefault();
+  }
+
   render() {
-    let hobbyItems = this.state.hobbies.map((hobby, i) => {
-      return <li>{hobby}</li>;});
+    let vehicleList = this.state.vehicles.map((vehicle, i) => {
+      return <li key={i}>{vehicle}</li>;});
 
     return (
       <div className="container">
-        <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="one-third column">
               <label>
@@ -88,9 +97,10 @@ class VehicleForm extends Component {
               </label>
             </div>
           </div>
-          <input type="submit" value="Submit" />
-        </form>
-        {hobbyItems}
+        <button onClick={this.handleSubmit}>Submit</button>
+        <button onClick={this.deleteLastVehicle}>Delete Vehicle</button>
+
+        {vehicleList}
       </div>
     );
   }
