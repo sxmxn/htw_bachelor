@@ -15,6 +15,7 @@ class VehicleForm extends Component {
 
     this.handleVehicleTyp = this.handleVehicleTyp.bind(this);
     this.handleNumber = this.handleNumber.bind(this);
+    this.handleCapacity = this.handleCapacity.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
