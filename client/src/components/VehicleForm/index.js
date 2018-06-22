@@ -9,7 +9,9 @@ class VehicleForm extends Component {
     this.state =  {
       value: {name: 'eVan', speed: 40},
       number: 1,
-      capacity: 100
+      capacity: 100,
+      hobbies: [
+      ]
     };
 
     this.handleNumber = this.handleNumber.bind(this);
@@ -45,12 +47,20 @@ class VehicleForm extends Component {
   }
 
   handleSubmit(event){
-    console.log(this.state)
+    //console.log(this.state)
+    let currentHobbies = this.state.hobbies;
+    currentHobbies.push(this.state.value.name);
+      this.setState({
+        hobbies: currentHobbies
+      });
     this.props.sendData(this.state);
     event.preventDefault();
   }
 
   render() {
+    let hobbyItems = this.state.hobbies.map((hobby, i) => {
+      return <li>{hobby}</li>;});
+
     return (
       <div className="container">
         <form onSubmit={this.handleSubmit}>
@@ -80,6 +90,7 @@ class VehicleForm extends Component {
           </div>
           <input type="submit" value="Submit" />
         </form>
+        {hobbyItems}
       </div>
     );
   }
