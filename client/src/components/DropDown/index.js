@@ -2,11 +2,19 @@ import React, { Component } from 'react';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 
+import style from './index.module.css'
+
 export class DropDown extends React.Component {
 
-  state = {
-    selectedOption: '',
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: '',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
@@ -24,9 +32,9 @@ export class DropDown extends React.Component {
           Pick your vehicle:
           <Dropdown
             options={[
-            { label: 'eVan', value: 40 },
-            { label: 'Trike', value: 20 },
-            { label: 'Bike', value: 25}
+            { label: 'eVan', value: { name: 'eVan', speed:40 }},
+            { label: 'Trike', value: { name: 'Trike', speed:20 }},
+            { label: 'Bike', value:{ name: 'Bike', speed:25 }}
           ]} onChange={this.handleChange} value={selectedOption} placeholder="Select an option" />
         </label>
       </div>
