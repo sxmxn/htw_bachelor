@@ -80,32 +80,34 @@ class VehicleForm extends Component {
       <div>
         <div className="container">
             <div className="row">
-              <div className="one-third column">
-                <label>
-                  Fahrzeugtyp:
-                  <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
-                    <option value='eVan'>eVan</option>
-                    <option value='trike'>Trike</option>
-                    <option value='bike'>Bike</option>
-                  </select>
-                </label>
+              <div className="six columns">
+                <div className={style.form}>
+                  <label>
+                    Fahrzeugtyp:
+                    <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
+                      <option value='eVan'>eVan</option>
+                      <option value='trike'>Trike</option>
+                      <option value='bike'>Bike</option>
+                    </select>
+                  </label>
+                  <label>
+                    Kapazität der Fahrzeuge in kg:
+                    <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.capacity} onChange={this.handleCapacity}/>
+                  </label>
+                  <label>
+                    Anzahl der Fahrzeuge:
+                    <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.number} onChange={this.handleNumber}/>
+                  </label>
+                </div>
               </div>
-              <div className="one-third column">
-                <label>
-                  Kapazität der Fahrzeuge in kg:
-                  <input type="number" pattern="[0-9]*" value={this.state.capacity} onChange={this.handleCapacity}/>
-                </label>
-              </div>
-              <div className="one-third column">
-                <label>
-                  Anzahl der Fahrzeuge:
-                  <input type="number" pattern="[0-9]*" value={this.state.number} onChange={this.handleNumber}/>
-                </label>
+              <div className="six columns">
+                <div className={style.list}>
+                  {vehicleList}
+                </div>
               </div>
             </div>
         </div>
         <div className="container">
-          {vehicleList}
           <div className="row">
             <div className={`six columns`}>
                 <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
