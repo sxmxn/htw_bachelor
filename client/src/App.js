@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
+import './skeleton.css';
+import './normalize.css';
 
 // components
 import VehicleForm from './components/VehicleForm'

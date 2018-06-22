@@ -40,20 +40,28 @@ class VehicleForm extends Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <div>
-         <DropDown sendData={this.handleVehicleTyp}/>
-        </div>
-        <label>
-          Kapazität der Fahrzeuge in kg:
-          <input type="number" pattern="[0-9]*" value={this.state.capacity} onChange={this.handleCapacity}/>
-        </label>
-        <label>
-          Anzahl der Fahrzeuge:
-          <input type="number" pattern="[0-9]*" value={this.state.number} onChange={this.handleNumber}/>
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
+      <div className="container">
+        <form onSubmit={this.handleSubmit}>
+          <div className="row">
+            <div className="one-third column">
+             <DropDown sendData={this.handleVehicleTyp}/>
+            </div>
+            <div className="one-third column">
+              <label>
+                Kapazität der Fahrzeuge in kg:
+                <input type="number" pattern="[0-9]*" value={this.state.capacity} onChange={this.handleCapacity}/>
+              </label>
+            </div>
+            <div className="one-third column">
+              <label>
+                Anzahl der Fahrzeuge:
+                <input type="number" pattern="[0-9]*" value={this.state.number} onChange={this.handleNumber}/>
+              </label>
+            </div>
+          </div>
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
     );
   }
 }
