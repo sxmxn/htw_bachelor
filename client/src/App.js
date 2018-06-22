@@ -13,6 +13,9 @@ import OptimizationGoalForm from "./components/OptimizationGoalForm";
 
 class App extends React.Component {
 
+  getVehicles(vehicle){
+    console.log(vehicle)
+  }
 
   render() {
     return (
@@ -20,7 +23,7 @@ class App extends React.Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
-        <VehicleForm/>
+        <VehicleForm sendData={this.getVehicles}/>
         <OptimizationGoalForm/>
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>

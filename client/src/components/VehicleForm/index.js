@@ -46,6 +46,7 @@ class VehicleForm extends Component {
 
   handleSubmit(event){
     console.log(this.state)
+    this.props.sendData(this.state);
     event.preventDefault();
   }
 
