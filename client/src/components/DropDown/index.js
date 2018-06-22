@@ -6,14 +6,20 @@ import style from './index.module.css'
 
 export class DropDown extends React.Component {
 
-  state = {
-    selectedOption: '',
-  };
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      selectedOption: '',
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+  }
 
   handleChange = (selectedOption) => {
     this.setState({ selectedOption });
     this.props.sendData(selectedOption.value);
-    //console.log(`Selected: ${selectedOption.value}`);
+    console.log(`Selected: ${selectedOption.value}`);
   };
 
   render() {
