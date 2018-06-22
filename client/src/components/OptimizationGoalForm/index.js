@@ -5,7 +5,7 @@ class OptimizationGoalForm extends Component {
   constructor(props) {
     super(props);
     this.state =  {
-      value: 0
+      optimizationGoal: 0
     };
 
     this.handleValueOfDropDown = this.handleValueOfDropDown.bind(this);
@@ -16,17 +16,18 @@ class OptimizationGoalForm extends Component {
   handleValueOfDropDown(event){
     switch (event.target.value) {
       case 'speed':
-        this.setState({value: 0});
+        this.setState({optimizationGoal: 0});
         break;
       case 'capacityUtilisation':
-        this.setState({value: 1});
+        this.setState({optimizationGoal: 1});
         break;
     }
 
   }
 
   handleSubmit(event){
-    console.log(this.state)
+    //console.log(this.state)
+    this.props.sendData(this.state);
     event.preventDefault();
   }
 

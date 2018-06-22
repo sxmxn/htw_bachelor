@@ -22,7 +22,10 @@ class App extends React.Component {
 
   getVehicles(vehicle){
     console.log(vehicle)
+  }
 
+  getOptimizationGoal(goal){
+    console.log(goal)
   }
 
   render() {
@@ -32,7 +35,7 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
         <VehicleForm sendData={this.getVehicles}/>
-        <OptimizationGoalForm/>
+        <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
