@@ -8,6 +8,7 @@ import VehicleForm from './components/VehicleForm'
 
 
 import data from './data.json';
+import OptimizationGoalForm from "./components/OptimizationGoalForm";
 
 
 class App extends React.Component {
@@ -20,6 +21,7 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
         <VehicleForm/>
+        <OptimizationGoalForm/>
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
