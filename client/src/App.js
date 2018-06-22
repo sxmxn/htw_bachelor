@@ -10,6 +10,9 @@ import VehicleForm from './components/VehicleForm'
 import data from './data.json';
 import OptimizationGoalForm from "./components/OptimizationGoalForm";
 
+//variables
+let vehicles;
+let optimizationGoal;
 
 class App extends React.Component {
 
@@ -21,8 +24,20 @@ class App extends React.Component {
 
 
   getVehicles(vehicle){
-    console.log(vehicle)
+    vehicles = vehicle;
+    console.log(vehicles)
+  }
 
+  getOptimizationGoal(goal){
+    optimizationGoal = goal;
+    console.log(optimizationGoal)
+  }
+
+  createSettings(){
+    let setting = {
+      vehicles, optimizationGoal
+    }
+    console.log(setting);
   }
 
   render() {
@@ -32,7 +47,8 @@ class App extends React.Component {
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
         <VehicleForm sendData={this.getVehicles}/>
-        <OptimizationGoalForm/>
+        <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
+        <button class="button-primary" onClick={this.createSettings}>Berechnung starten</button>
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
