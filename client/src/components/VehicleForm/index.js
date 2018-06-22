@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import DropDown from '../../components/DropDown'
 
 import style from './index.module.css'
 
@@ -8,22 +7,17 @@ class VehicleForm extends Component {
   constructor(props) {
     super(props);
     this.state =  {
-      // vehicle: '' ,
       value: {name: 'eVan', speed: 40},
       number: 1,
       capacity: 100
     };
 
-    // this.handleVehicleTyp = this.handleVehicleTyp.bind(this);
     this.handleNumber = this.handleNumber.bind(this);
     this.handleCapacity = this.handleCapacity.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleValueOfDropDown = this.handleValueOfDropDown.bind(this);
-  }
+    this.handleSubmit = this.handleSubmit.bind(this);
 
- /* handleVehicleTyp = (Value) => {
-    this.setState({vehicle: Value});
-  }; */
+  }
 
   handleValueOfDropDown(event){
     switch (event.target.value) {
@@ -69,7 +63,6 @@ class VehicleForm extends Component {
                   <option value='bike'>Bike</option>
                 </select>
               </label>
-              { /*<DropDown sendData={this.handleVehicleTyp}/> */ }
             </div>
             <div className="one-third column">
               <label>
