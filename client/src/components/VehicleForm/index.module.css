@@ -1,0 +1,10 @@
+:local(.submit) {
+    float: right;
+    background-color: #33C3F0;
+    border-color: #33C3F0;
+    color: white;
+}
+
+:local(.delete) {
+    float: left;
+}

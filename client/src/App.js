@@ -10,7 +10,6 @@ import VehicleForm from './components/VehicleForm'
 import data from './data.json';
 import OptimizationGoalForm from "./components/OptimizationGoalForm";
 
-let vehicles = [];
 
 class App extends React.Component {
 
@@ -20,18 +19,9 @@ class App extends React.Component {
     };
   }
 
-  renderVehicleList(){
-    return(
-      <div>
-        {vehicles.map(card => card)}
-      </div>
-    )
-  }
-
 
   getVehicles(vehicle){
-    vehicles.push(vehicle)
-    console.log(vehicles)
+    console.log(vehicle)
 
   }
 
@@ -43,10 +33,6 @@ class App extends React.Component {
         </header>
         <VehicleForm sendData={this.getVehicles}/>
         <OptimizationGoalForm/>
-        <ul>
-          <li>Item 1</li>
-        </ul>
-        {this.renderVehicleList()}
         <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
