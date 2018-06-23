@@ -46,18 +46,24 @@ class App extends React.Component {
         <header className="App-header">
           <h1 className="App-title">Welcome to Miami</h1>
         </header>
-        <div className="container">
-          <div className="row">
-            <div className="two-thirds column">
-              <VehicleForm sendData={this.getVehicles}/>
+        <div className="card">
+          <div className="container">
+            <div className="row">
+              <div className="two-thirds column">
+                <VehicleForm sendData={this.getVehicles}/>
+              </div>
+              <div className="one-third column">
+                <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
+              </div>
             </div>
-            <div className="one-third column">
-              <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
+          </div>
+          <div className="container">
+            <div className="row">
+                <button className="calculate" onClick={this.createSettings}>Berechnung starten</button>
+                <button className="calculate" onClick={() => {console.log(data)}}>Click ME</button>
             </div>
           </div>
         </div>
-        <button class="button-primary" onClick={this.createSettings}>Berechnung starten</button>
-        <button onClick={() => {console.log(data)}}>Click ME</button>
       </div>
     );
   }

@@ -4,12 +4,27 @@
 
 
 .App-header {
-  background-color: #222;
+  background-color: #33C3F0;
   padding: 2rem;
   color: white;
 }
 
 .App-title {
   font-size: 1.5em;
+}
+
+.calculate{
+    margin-right: 2rem;
+    background-color: #33C3F0;
+    border-color: #33C3F0;
+    color: white;
+
+}
+
+.card{
+    box-shadow: 0 5px 10px -5px rgba(0,0,0,0.8);
+    padding-bottom: 2rem;
+    margin: 0rem 0rem 2rem 0rem;
+    background-color: white;
 }
 
