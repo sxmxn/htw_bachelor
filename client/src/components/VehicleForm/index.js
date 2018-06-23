@@ -77,12 +77,15 @@ class VehicleForm extends Component {
       return <li key={i}>{vehicle}</li>;});
 
     return (
-      <div>
-        <div className="container">
+      <div className={style.root}>
+        <div className="container u-full-width u-max-full-width">
+          <div className="row">
+            <h4>Fahrzeugkonfiguration</h4>
+          </div>
             <div className="row">
               <div className="six columns">
                 <div className={style.form}>
-                  <label>
+                  <label className={style.label}>
                     Fahrzeugtyp:
                     <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
                       <option value='eVan'>eVan</option>
@@ -90,32 +93,25 @@ class VehicleForm extends Component {
                       <option value='bike'>Bike</option>
                     </select>
                   </label>
-                  <label>
+                  <label className={style.label}>
                     Kapazität der Fahrzeuge in kg:
                     <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.capacity} onChange={this.handleCapacity}/>
                   </label>
-                  <label>
+                  <label className={style.label}>
                     Anzahl der Fahrzeuge:
                     <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.number} onChange={this.handleNumber}/>
                   </label>
+                    <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
+                    <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
                 </div>
               </div>
               <div className="six columns">
                 <div className={style.list}>
+                  <h6 className={style.headLineList}>Fahrzeuge:</h6>
                   {vehicleList}
                 </div>
               </div>
             </div>
-        </div>
-        <div className="container">
-          <div className="row">
-            <div className={`six columns`}>
-                <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
-            </div>
-            <div className="six columns">
-                <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
-            </div>
-          </div>
         </div>
       </div>
     );

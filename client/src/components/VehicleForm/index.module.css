@@ -1,27 +1,55 @@
+:local(.root) {
+    box-shadow: 0 1px 5px rgba(0,0,0,0.8);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: white;
+    border-top: 10px solid #33C3F0;
+}
+
 :local(.submit) {
-    float: right;
     background-color: #33C3F0;
     border-color: #33C3F0;
     color: white;
-    margin-bottom: 2rem;
+    margin-top: 1rem;
+    width: 47%;
+    float: left;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0;
 }
 
 :local(.delete) {
-    float: left;
+    width: 47%;
+    float: right;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 0;
+    margin-top: 1rem;
+
 }
 
 :local(.list) {
-    width: 100%;
-    height: 15rem;
+    width: 90%;
+    height: 19.5rem;
     background: #FFFFFF;
     padding: 1em;
-    margin: 2em auto;
+    margin: auto;
+    margin-top: 2rem;
     border-top: 10px solid #33C3F0;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    box-shadow: 0 1px 5px rgba(0,0,0,0.8);
     overflow: scroll;
 }
 
 :local(.form){
-    margin-top: 2rem;
+    width: 90%;
     margin-bottom: 2rem;
+}
+
+:local(.headLineList){
+    text-decoration: underline;
+}
+
+:local(.label){
+    font-weight: normal;
 }
