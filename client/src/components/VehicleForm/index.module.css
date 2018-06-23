@@ -47,3 +47,7 @@
 :local(.headLineList){
     text-decoration: underline;
 }
+
+:local(.label){
+    font-weight: normal;
+}
