@@ -3,12 +3,12 @@ import './App.css';
 import './skeleton.css';
 import './normalize.css';
 
+
 // components
 import VehicleForm from './components/VehicleForm'
-
-
 import data from './data.json';
 import OptimizationGoalForm from "./components/OptimizationGoalForm";
+import Map from './components/Map'
 
 //variables
 let vehicles;
@@ -64,6 +64,7 @@ class App extends React.Component {
             </div>
           </div>
         </div>
+        <Map/>
       </div>
     );
   }

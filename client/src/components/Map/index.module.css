@@ -1,0 +1,15 @@
+:local(.map) {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    text-align: left;
+}
+
+:local(.coordinates){
+    position: absolute;
+    z-index: 1;
+}
+
+:local(.container){
+    margin: 2rem
+}
