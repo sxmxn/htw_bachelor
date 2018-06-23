@@ -1,4 +1,17 @@
+:local(.root){
+    box-shadow: 0 2px 10px rgba(0,0,0,0.8);
+    padding: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
 :local(.placeholder){
     color: gray;
     font-size: 1px;
+}
+
+:local(.goal){
+    width: 100%;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }

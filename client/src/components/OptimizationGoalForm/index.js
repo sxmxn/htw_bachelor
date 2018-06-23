@@ -27,19 +27,23 @@ class OptimizationGoalForm extends Component {
 
   render() {
     return (
+      <div className={style.root}>
       <div className="container">
+        <div className="row">
+          <h4>Optimierungsziel</h4>
+        </div>
           <div className="row">
             <div className="twelve columns">
-              <label>
-                Optimierungsziel:
+              <div className={style.goal}>
                 <select className="u-full-width" onChange={this.handleValueOfDropDown}>
-                  <option value="" disabled selected hidden>Select your optimization goal</option>
+                  <option value="" disabled selected hidden>Select your goal</option>
                   <option value='speed'>Geschwindigkeit</option>
                   <option value='capacityUtilisation'>Fahrzeugsauslastung</option>
                 </select>
-              </label>
+              </div>
             </div>
           </div>
+      </div>
       </div>
     );
   }
