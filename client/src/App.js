@@ -55,8 +55,12 @@ class App extends React.Component {
               </div>
               <div className="one-third column">
                 <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
-                <CreateStopps/>
               </div>
+            </div>
+          </div>
+          <div className="container">
+            <div className="row">
+              <CreateStopps/>
             </div>
           </div>
           <div className="container">

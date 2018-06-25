@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import style from './index.module.css'
 
+
 class CreateStopps extends Component {
 
   constructor(props) {
@@ -12,17 +13,35 @@ class CreateStopps extends Component {
       pickup_place: "Zürich",
       delivery_street: "Neue Allmendstr",
       delivery_number: "10",
-      delivery_place: "Erlenbach"
+      delivery_place: "Erlenbach",
+      stoppData: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDeletion = this.handleDeletion.bind(this);
   }
 
   handleSubmit(){
-    console.log(this.state)
-    //this.props.sendData(this.state);
+    let currentAddress = this.state.stoppData;
+    this.state.stoppData.push({pickup_street: this.state.pickup_street, pickup_number: this.state.pickup_number, pickup_place: this.state.pickup_place, delivery_street: this.state.delivery_street, delivery_number: this.state.delivery_number, delivery_place: this.state.delivery_place});
+    this.setState({
+      stoppData: currentAddress
+    });
 
+    console.log(this.state.stoppData)
+    //this.props.sendData(stoppData);
+  }
+
+  handleDeletion(){
+    let currentAddress = this.state.stoppData;
+    currentAddress.pop()
+    this.setState({
+      stoppData: currentAddress
+    });
+
+    console.log(this.state.stoppData)
+    //this.props.sendData(stoppData);
   }
 
   handleChange(event){
@@ -36,15 +55,32 @@ class CreateStopps extends Component {
   }
 
   render() {
+    let addressList = this.state.stoppData.map((address, i) => {
+      return <div key={i}>
+        <span className={style.list}><b>Abholadresse: </b>{`${address.pickup_street} ${address.pickup_number}, ${address.pickup_place}`}</span>
+        <br/>
+        <span className={style.list}><b>Lieferadresse: </b>{`${address.delivery_street} ${address.delivery_number}, ${address.delivery_place}`}</span>
+        <br/>
+        <br/>
+      </div>;});
+
     return (
       <div className="container u-full-width u-max-full-width">
-        <input type="text"  name="pickup_street" className={style.streetname} placeholder={"Straße Abholung"} onChange={this.handleChange}/>
-        <input type="text"  name="pickup_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
-        <input type="text"  name="pickup_place" className={style.place} placeholder={"Ort Abholung"} onChange={this.handleChange}/>
-        <input type="text"  name="delivery_street" className={style.streetname} placeholder={"Straße Lieferung"} onChange={this.handleChange}/>
-        <input type="text"  name="delivery_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
-        <input type="text"  name="delivery_place" className={style.place} placeholder={"Ort Lieferung"} onChange={this.handleChange}/>
+        <div className="row">
+          <div className="six columns">
+            <input type="text"  name="pickup_street" className={style.streetname} placeholder={"Straße Abholung"} onChange={this.handleChange}/>
+            <input type="text"  name="pickup_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
+            <input type="text"  name="pickup_place" className={style.place} placeholder={"Ort Abholung"} onChange={this.handleChange}/>
+            <input type="text"  name="delivery_street" className={style.streetname} placeholder={"Straße Lieferung"} onChange={this.handleChange}/>
+            <input type="text"  name="delivery_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
+            <input type="text"  name="delivery_place" className={style.place} placeholder={"Ort Lieferung"} onChange={this.handleChange}/>
+          </div>
+          <div className="six columns">
+            {addressList}
+          </div>
+        </div>
         <button onClick={this.handleSubmit}>Add Stopp</button>
+        <button onClick={this.handleDeletion}>Delete Stopp</button>
       </div>
     );
 
