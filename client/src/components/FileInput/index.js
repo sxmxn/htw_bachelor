@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+let jsonObj;
+
 class FileInput extends React.Component {
   constructor(props) {
     super(props);
@@ -16,16 +18,13 @@ class FileInput extends React.Component {
     reader.readAsText(this.fileInput.current.files[0]);
 
     reader.onload = function(event) {
-      let jsonObj = JSON.parse(event.target.result);
-      alert(jsonObj);
+      jsonObj= JSON.parse(event.target.result);
+
+    };
+
+    reader.onloadend = function(){
       console.log(jsonObj)
-    }
-
-    console.log(reader)
-
-    this.state.input.push(this.fileInput.current.files[0])
-    console.log(this.state.input)
-
+    };
   }
 
   render() {
