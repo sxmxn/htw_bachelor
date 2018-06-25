@@ -29,8 +29,8 @@ class OptimizationGoalForm extends Component {
     return (
       <div className={style.root}>
       <div className="container">
+        <h4>Optimierungsziel</h4>
         <div className="row">
-          <h4>Optimierungsziel</h4>
         </div>
           <div className="row">
             <div className="twelve columns">

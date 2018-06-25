@@ -57,30 +57,38 @@ class CreateStopps extends Component {
   render() {
     let addressList = this.state.stoppData.map((address, i) => {
       return <div key={i}>
-        <span className={style.list}><b>Abholadresse: </b>{`${address.pickup_street} ${address.pickup_number}, ${address.pickup_place}`}</span>
+        <span className={style.address}><b>Abholadresse: </b>{`${address.pickup_street} ${address.pickup_number}, ${address.pickup_place}`}</span>
         <br/>
-        <span className={style.list}><b>Lieferadresse: </b>{`${address.delivery_street} ${address.delivery_number}, ${address.delivery_place}`}</span>
+        <span className={style.address}><b>Lieferadresse: </b>{`${address.delivery_street} ${address.delivery_number}, ${address.delivery_place}`}</span>
         <br/>
         <br/>
       </div>;});
 
     return (
-      <div className="container u-full-width u-max-full-width">
-        <div className="row">
-          <div className="six columns">
-            <input type="text"  name="pickup_street" className={style.streetname} placeholder={"Straße Abholung"} onChange={this.handleChange}/>
-            <input type="text"  name="pickup_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
-            <input type="text"  name="pickup_place" className={style.place} placeholder={"Ort Abholung"} onChange={this.handleChange}/>
-            <input type="text"  name="delivery_street" className={style.streetname} placeholder={"Straße Lieferung"} onChange={this.handleChange}/>
-            <input type="text"  name="delivery_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
-            <input type="text"  name="delivery_place" className={style.place} placeholder={"Ort Lieferung"} onChange={this.handleChange}/>
-          </div>
-          <div className="six columns">
-            {addressList}
+      <div className={style.root}>
+        <div className="container u-full-width u-max-full-width">
+          <h4>Stopps erstellen</h4>
+          <div className="row">
+            <div className="six columns">
+              <div className={style.form}>
+                <input type="text"  name="pickup_street" className={style.streetname} placeholder={"Straße Abholung"} onChange={this.handleChange}/>
+                <input type="text"  name="pickup_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
+                <input type="text"  name="pickup_place" className={style.place} placeholder={"Ort Abholung"} onChange={this.handleChange}/>
+                <input type="text"  name="delivery_street" className={style.streetname} placeholder={"Straße Lieferung"} onChange={this.handleChange}/>
+                <input type="text"  name="delivery_number" className={style.number} placeholder={"Nr."} onChange={this.handleChange}/>
+                <input type="text"  name="delivery_place" className={style.place} placeholder={"Ort Lieferung"} onChange={this.handleChange}/>
+                <button className={style.submit} onClick={this.handleSubmit}>Add Stopp</button>
+                <button className={style.delete} onClick={this.handleDeletion}>Delete Stopp</button>
+              </div>
+            </div>
+            <div className="six columns">
+              <div className={style.list}>
+                <h6 className={style.headLineList}>Stopps:</h6>
+                {addressList}
+              </div>
+            </div>
           </div>
         </div>
-        <button onClick={this.handleSubmit}>Add Stopp</button>
-        <button onClick={this.handleDeletion}>Delete Stopp</button>
       </div>
     );
 
