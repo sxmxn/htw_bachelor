@@ -1,0 +1,15 @@
+:local(.streetname){
+    width: 78%;
+    margin-right: 2%;
+    margin-bottom: 1rem;
+}
+
+:local(.number){
+    width: 20%;
+    margin-bottom: 1rem;
+}
+
+:local(.place){
+    width: 100%;
+    margin-bottom: 2rem;
+}
