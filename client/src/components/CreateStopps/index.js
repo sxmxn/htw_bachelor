@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import style from './index.module.css'
 
+import FileInput from '../../components/FileInput'
+
 
 class CreateStopps extends Component {
 
@@ -86,6 +88,7 @@ class CreateStopps extends Component {
                 <h6 className={style.headLineList}>Stopps:</h6>
                 {addressList}
               </div>
+              <FileInput/>
             </div>
           </div>
         </div>
