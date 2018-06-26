@@ -54,10 +54,26 @@ class VehicleForm extends Component {
     //console.log(this.state)
     let currentVehicleTypes = this.state.vehicle_types;
     let currentVehicles = this.state.vehicles;
-    currentVehicleTypes.push({type_id:`vehicle_type_${this.state.vehicle_types.length+1}`  , profile: this.state.profile, capacity: this.state.capacity, speed_factor: this.state.speed_factor});
+    currentVehicleTypes.push(
+      {
+        type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
+        profile: this.state.profile,
+        capacity: this.state.capacity,
+        speed_factor: this.state.speed_factor
+      });
 
     for(let i = this.state.number; i>0; i-- ){
-      currentVehicles.push({type_id: `vehicle_type_${this.state.vehicle_types.length}`})
+      currentVehicles.push(
+        {
+          vehicle_id: `vehicle_${this.state.vehicles.length +1}`,
+          start_address: {
+            location_id: "zuerich",
+            lon: 8.5033335 ,
+            lat: 47.3871498
+          },
+          type_id: `vehicle_type_${this.state.vehicle_types.length}`,
+          latest_end: 150000
+        })
     }
       this.setState({
         vehicle_types: currentVehicleTypes,
@@ -70,10 +86,18 @@ class VehicleForm extends Component {
 
   handleDeletion(event){
     let currentVehicleTypes = this.state.vehicle_types;
+    let currentVehicles = this.state.vehicles;
     currentVehicleTypes.pop();
+
+    for(let i = this.state.number; i>0; i-- ){
+      currentVehicles.pop();
+    }
+
     this.setState({
-      vehicle_types: currentVehicleTypes
+      vehicle_types: currentVehicleTypes,
+      vehicles: currentVehicles
     });
+    console.log(this.state.vehicles)
     this.props.sendData(this.state.vehicle_types);
     event.preventDefault();
   }
