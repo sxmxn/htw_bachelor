@@ -16,12 +16,14 @@ class CreateStopps extends Component {
       delivery_street: "Neue Allmendstr",
       delivery_number: "10",
       delivery_place: "Erlenbach",
+      address: [],
       stoppData: []
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
+    this.getJSON = this.getJSON.bind(this);
   }
 
   handleSubmit(){
@@ -56,6 +58,11 @@ class CreateStopps extends Component {
     });
   }
 
+  getJSON(obj){
+    console.log(obj)
+    this.state.address = obj
+  }
+
   render() {
     let addressList = this.state.stoppData.map((address, i) => {
       return <div key={i}>
@@ -88,7 +95,7 @@ class CreateStopps extends Component {
                 <h6 className={style.headLineList}>Stopps:</h6>
                 {addressList}
               </div>
-              <FileInput/>
+              <FileInput sendData={this.getJSON}/>
             </div>
           </div>
         </div>
