@@ -32,9 +32,9 @@ export class DropDown extends React.Component {
           Pick your vehicle:
           <Dropdown
             options={[
-            { label: 'eVan', value: { name: 'eVan', speed:40 }},
-            { label: 'Trike', value: { name: 'Trike', speed:20 }},
-            { label: 'Bike', value:{ name: 'Bike', speed:25 }}
+            { label: 'eVan', value: { profile: 'eVan', speed_factor:40 }},
+            { label: 'Trike', value: { profile: 'Trike', speed_factor:20 }},
+            { label: 'Bike', value:{ profile: 'Bike', speed_factor:25 }}
           ]} onChange={this.handleChange} value={selectedOption} placeholder="Select an option" />
         </label>
       </div>
