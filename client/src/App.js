@@ -17,7 +17,7 @@ class App extends React.Component {
     super(props);
     this.state =  {
       vehicles: {},
-      optimizationGoal: {},
+      objectives: [],
       stopps: {}
     };
     this.getVehicles = this.getVehicles.bind(this);
@@ -32,9 +32,10 @@ class App extends React.Component {
   }
 
   getOptimizationGoal(goal){
-    this.setState({optimizationGoal: goal}, () => {
-    console.log(this.state.optimizationGoal)})
+    this.setState({objectives: [goal]}, () => {
+    console.log(this.state)})
   }
+
 
   getStopps(stopps){
     this.setState({stopps: stopps}, () => {
