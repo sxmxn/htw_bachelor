@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import Files from "react-files";
 
-let jsonObj;
-
 class FileInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       input: {},
-    }
+    };
 
     this.fileReader = new FileReader();
     this.fileReader.onload = (event) => {
 
       this.setState({input: JSON.parse(event.target.result)}, () => {
-        console.log(this.state.input);
+        this.props.sendData(this.state.input)
       });
     };
 

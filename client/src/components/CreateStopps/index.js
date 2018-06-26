@@ -16,7 +16,6 @@ class CreateStopps extends Component {
       delivery_street: "Neue Allmendstr",
       delivery_number: "10",
       delivery_place: "Erlenbach",
-      address: [],
       stoppData: []
     };
 
@@ -59,8 +58,14 @@ class CreateStopps extends Component {
   }
 
   getJSON(obj){
-    console.log(obj)
-    this.state.address = obj
+    let currentAddress = this.state.stoppData;
+    obj.map(stopp => {this.state.stoppData.push(stopp)})
+    this.setState({
+      stoppData: currentAddress
+    });
+
+    console.log(this.state.stoppData)
+
   }
 
   render() {
