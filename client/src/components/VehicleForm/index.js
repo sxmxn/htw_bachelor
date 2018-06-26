@@ -59,7 +59,11 @@ class VehicleForm extends Component {
         type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
         profile: this.state.profile,
         capacity: this.state.capacity,
-        speed_factor: this.state.speed_factor
+        speed_factor: this.state.speed_factor,
+        options: {
+          number: this.state.number,
+          name: this.state.name
+        }
       });
 
     for(let i = this.state.number; i>0; i-- ){
@@ -79,8 +83,8 @@ class VehicleForm extends Component {
         vehicle_types: currentVehicleTypes,
         vehicles: currentVehicles
       });
-    console.log(this.state.vehicles)
-    this.props.sendData(this.state.vehicle_types);
+    this.props.sendVehicleTypes(this.state.vehicle_types);
+    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
@@ -97,14 +101,14 @@ class VehicleForm extends Component {
       vehicle_types: currentVehicleTypes,
       vehicles: currentVehicles
     });
-    console.log(this.state.vehicles)
-    this.props.sendData(this.state.vehicle_types);
+    this.props.sendVehicleTypes(this.state.vehicle_types);
+    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
   render() {
     let vehicleList = this.state.vehicle_types.map((vehicle, i) => {
-      return <li key={i}>{vehicle.profile}</li>;});
+      return <div key={i}>{`${vehicle.options.number} ${vehicle.options.name}, ${vehicle.capacity}`}</div>;});
 
     return (
       <div className={style.root}>

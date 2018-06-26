@@ -16,19 +16,27 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state =  {
+      vehicle_types: {},
       vehicles: {},
       objectives: [],
       stopps: {}
     };
+    this.getVehicleTypes = this.getVehicleTypes.bind(this);
     this.getVehicles = this.getVehicles.bind(this);
     this.getOptimizationGoal = this.getOptimizationGoal.bind(this);
     this.getStopps = this.getStopps.bind(this);
   }
 
 
-  getVehicles(vehicle){
-    this.setState({vehicles: vehicle}, () => {
-    console.log(this.state.vehicles)})
+  getVehicleTypes(vehicleTypes){
+    this.setState({vehicle_types: vehicleTypes}, () => {
+    console.log(this.state.vehicle_types)})
+  }
+
+  getVehicles(vehicles){
+    this.setState({vehicles: vehicles}, () => {
+      console.log(this.state.vehicles)
+    })
   }
 
   getOptimizationGoal(goal){
@@ -56,7 +64,7 @@ class App extends React.Component {
           <div className="container">
             <div className="row">
               <div className="two-thirds column">
-                <VehicleForm sendData={this.getVehicles}/>
+                <VehicleForm sendVehicleTypes={this.getVehicleTypes} sendVehicles={this.getVehicles}/>
               </div>
               <div className="one-third column">
                 <OptimizationGoalForm sendData={this.getOptimizationGoal}/>
