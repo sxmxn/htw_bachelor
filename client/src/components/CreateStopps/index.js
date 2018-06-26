@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import style from './index.module.css'
 
+import FileInput from '../../components/FileInput'
+
 
 class CreateStopps extends Component {
 
@@ -20,6 +22,7 @@ class CreateStopps extends Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
+    this.getJSON = this.getJSON.bind(this);
   }
 
   handleSubmit(){
@@ -54,6 +57,17 @@ class CreateStopps extends Component {
     });
   }
 
+  getJSON(obj){
+    let currentAddress = this.state.stoppData;
+    obj.map(stopp => {this.state.stoppData.push(stopp)})
+    this.setState({
+      stoppData: currentAddress
+    });
+
+    console.log(this.state.stoppData)
+
+  }
+
   render() {
     let addressList = this.state.stoppData.map((address, i) => {
       return <div key={i}>
@@ -86,6 +100,7 @@ class CreateStopps extends Component {
                 <h6 className={style.headLineList}>Stopps:</h6>
                 {addressList}
               </div>
+              <FileInput sendData={this.getJSON}/>
             </div>
           </div>
         </div>
