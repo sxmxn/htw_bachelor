@@ -27,7 +27,7 @@ class CreateStopps extends Component {
 
   handleSubmit(){
     let currentAddress = this.state.stoppData;
-    this.state.stoppData.push({pickup_street: this.state.pickup_street, pickup_number: this.state.pickup_number, pickup_place: this.state.pickup_place, delivery_street: this.state.delivery_street, delivery_number: this.state.delivery_number, delivery_place: this.state.delivery_place});
+    currentAddress.push({pickup_street: this.state.pickup_street, pickup_number: this.state.pickup_number, pickup_place: this.state.pickup_place, delivery_street: this.state.delivery_street, delivery_number: this.state.delivery_number, delivery_place: this.state.delivery_place});
     this.setState({
       stoppData: currentAddress
     });

@@ -14,11 +14,24 @@ class OptimizationGoalForm extends Component {
 
   handleValueOfDropDown(event){
     switch (event.target.value) {
-      case 'speed':
-        this.props.sendData({optimizationGoal: 0});
+      case '1':
+        this.props.sendData(
+          {
+            type: "min-max",
+            value: "transport_time"
+          });
         break;
-      case 'capacityUtilisation':
-        this.props.sendData({optimizationGoal: 1});
+      case '2':
+        this.props.sendData({
+          type: "min-max",
+          value: "completion_time"
+        });
+        break;
+      case '3':
+        this.props.sendData({
+          type: "min",
+          value: "vehicles"
+        });
         break;
     }
 
@@ -37,8 +50,9 @@ class OptimizationGoalForm extends Component {
               <div className={style.goal}>
                 <select className="u-full-width" onChange={this.handleValueOfDropDown}>
                   <option value="" disabled selected hidden>Select your goal</option>
-                  <option value='speed'>Geschwindigkeit</option>
-                  <option value='capacityUtilisation'>Fahrzeugsauslastung</option>
+                  <option value='1'>transport time</option>
+                  <option value='2'>completion time</option>
+                  <option value='3'>minimizes vehicles</option>
                 </select>
               </div>
             </div>

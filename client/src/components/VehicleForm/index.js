@@ -2,18 +2,19 @@ import React, { Component } from 'react';
 
 import style from './index.module.css'
 
-let vehicleData = [];
-
 class VehicleForm extends Component {
 
   constructor(props) {
     super(props);
     this.state =  {
-      value: {name: 'eVan', speed: 40},
+      type_id: '',
+      name: 'eVan',
+      profile: 'car',
+      speed_factor: 1,
       number: 1,
-      capacity: 100,
-      vehicles: [
-      ]
+      capacity: [100],
+      vehicle_types: [],
+      vehicles: []
     };
 
     this.handleNumber = this.handleNumber.bind(this);
@@ -27,13 +28,13 @@ class VehicleForm extends Component {
   handleValueOfDropDown(event){
     switch (event.target.value) {
       case 'eVan':
-        this.setState({value: {name: 'eVan', speed: 40}});
+        this.setState({name: 'eVan', profile: 'car', speed_factor: 1});
         break;
       case 'trike':
-        this.setState({value: {name: 'Trike', speed: 20}});
+        this.setState({name: 'Trike', profile: 'car', speed_factor: 0.7});
         break;
       case 'bike':
-        this.setState({value: {name: 'Bike', speed: 25}});
+        this.setState({name: 'Bike', profile: 'bike', speed_factor: 1});
         break;
     }
 
@@ -46,35 +47,68 @@ class VehicleForm extends Component {
 
   handleCapacity(event){
     const capacity = parseInt(event.target.value, 10);
-    this.setState({capacity: capacity})
+    this.setState({capacity: [capacity]})
   }
 
   handleSubmit(event){
     //console.log(this.state)
+    let currentVehicleTypes = this.state.vehicle_types;
     let currentVehicles = this.state.vehicles;
-    currentVehicles.push(this.state.number + " " + this.state.value.name+ "(s)" + " (" + this.state.capacity + "kg)");
+    currentVehicleTypes.push(
+      {
+        type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
+        profile: this.state.profile,
+        capacity: this.state.capacity,
+        speed_factor: this.state.speed_factor,
+        options: {
+          number: this.state.number,
+          name: this.state.name
+        }
+      });
+
+    for(let i = this.state.number; i>0; i-- ){
+      currentVehicles.push(
+        {
+          vehicle_id: `vehicle_${this.state.vehicles.length +1}`,
+          start_address: {
+            location_id: "zuerich",
+            lon: 8.5033335 ,
+            lat: 47.3871498
+          },
+          type_id: `vehicle_type_${this.state.vehicle_types.length}`,
+          latest_end: 150000
+        })
+    }
       this.setState({
+        vehicle_types: currentVehicleTypes,
         vehicles: currentVehicles
       });
-      vehicleData.push({number: this.state.number, name: this.state.value.name, capacity: this.state.capacity});
-    this.props.sendData(vehicleData);
+    this.props.sendVehicleTypes(this.state.vehicle_types);
+    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
   handleDeletion(event){
+    let currentVehicleTypes = this.state.vehicle_types;
     let currentVehicles = this.state.vehicles;
-    currentVehicles.pop();
+    currentVehicleTypes.pop();
+
+    for(let i = this.state.number; i>0; i-- ){
+      currentVehicles.pop();
+    }
+
     this.setState({
+      vehicle_types: currentVehicleTypes,
       vehicles: currentVehicles
     });
-    vehicleData.pop();
-    this.props.sendData(vehicleData);
+    this.props.sendVehicleTypes(this.state.vehicle_types);
+    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
   render() {
-    let vehicleList = this.state.vehicles.map((vehicle, i) => {
-      return <li key={i}>{vehicle}</li>;});
+    let vehicleList = this.state.vehicle_types.map((vehicle, i) => {
+      return <div key={i}>{`${vehicle.options.number} ${vehicle.options.name}, ${vehicle.capacity}`}</div>;});
 
     return (
       <div className={style.root}>
