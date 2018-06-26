@@ -6,39 +6,18 @@ let jsonObj;
 class FileInput extends React.Component {
   constructor(props) {
     super(props);
-    this.state =  {
+    this.state = {
       input: {},
     }
 
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.fileInput = React.createRef();
     this.fileReader = new FileReader();
     this.fileReader.onload = (event) => {
 
-      this.setState({ input: JSON.parse(event.target.result) }, () => {
+      this.setState({input: JSON.parse(event.target.result)}, () => {
         console.log(this.state.input);
       });
     };
 
-  }
-
-
-
-
-  handleSubmit(event) {
-
-    const reader = new FileReader();
-    //this.props.sendData(this.state.input);
-
-    reader.onload = function(event) {
-      jsonObj= JSON.parse(event.target.result);
-      console.log(jsonObj)
-
-    };
-
-    reader.readAsText(this.fileInput.current.files[0]);
-
-    event.preventDefault();
   }
 
   render() {
