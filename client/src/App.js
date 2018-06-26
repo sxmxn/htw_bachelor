@@ -11,34 +11,38 @@ import OptimizationGoalForm from "./components/OptimizationGoalForm";
 import Map from './components/Map'
 import CreateStopps from './components/CreateStopps';
 
-//variables
-let vehicles;
-let optimizationGoal;
-
 class App extends React.Component {
 
   constructor(props) {
     super(props);
     this.state =  {
+      vehicles: {},
+      optimizationGoal: {},
+      stopps: {}
     };
+    this.getVehicles = this.getVehicles.bind(this);
+    this.getOptimizationGoal = this.getOptimizationGoal.bind(this);
+    this.getStopps = this.getStopps.bind(this);
   }
 
 
   getVehicles(vehicle){
-    vehicles = vehicle;
-    console.log(vehicles)
+    this.setState({vehicles: vehicle}, () => {
+    console.log(this.state.vehicles)})
   }
 
   getOptimizationGoal(goal){
-    optimizationGoal = goal;
-    console.log(optimizationGoal)
+    this.setState({optimizationGoal: goal}, () => {
+    console.log(this.state.optimizationGoal)})
+  }
+
+  getStopps(stopps){
+    this.setState({stopps: stopps}, () => {
+      console.log(this.state.stopps)
+    })
   }
 
   createSettings(){
-    let setting = {
-      vehicles, optimizationGoal
-    }
-    console.log(setting);
   }
 
   render() {
@@ -60,7 +64,7 @@ class App extends React.Component {
           </div>
           <div className="container">
             <div className="row">
-              <CreateStopps/>
+              <CreateStopps sendData={this.getStopps}/>
             </div>
           </div>
           <div className="container">

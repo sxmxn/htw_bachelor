@@ -31,9 +31,8 @@ class CreateStopps extends Component {
     this.setState({
       stoppData: currentAddress
     });
-
-    console.log(this.state.stoppData)
-    //this.props.sendData(stoppData);
+    this.props.sendData(this.state.stoppData)
+    //console.log(this.state.stoppData)
   }
 
   handleDeletion(){
@@ -43,8 +42,7 @@ class CreateStopps extends Component {
       stoppData: currentAddress
     });
 
-    console.log(this.state.stoppData)
-    //this.props.sendData(stoppData);
+    this.props.sendData(this.state.stoppData)
   }
 
   handleChange(event){
@@ -63,8 +61,7 @@ class CreateStopps extends Component {
     this.setState({
       stoppData: currentAddress
     });
-
-    console.log(this.state.stoppData)
+    this.props.sendData(this.state.stoppData)
 
   }
 
