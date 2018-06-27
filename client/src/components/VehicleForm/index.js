@@ -19,8 +19,6 @@ class VehicleForm extends Component {
       vehicle_types: []
     };
 
-    this.handleNumber = this.handleNumber.bind(this);
-    this.handleCapacity = this.handleCapacity.bind(this);
     this.handleValueOfDropDown = this.handleValueOfDropDown.bind(this);
     this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -41,16 +39,6 @@ class VehicleForm extends Component {
         break;
     }
 
-  }
-
-  handleNumber(event){
-    const number = parseInt(event.target.value, 10);
-    this.setState({number: number})
-  }
-
-  handleCapacity(event){
-    const capacity = parseInt(event.target.value, 10);
-    this.setState({capacity: [capacity]})
   }
 
   handleChanges(event){
@@ -125,11 +113,11 @@ class VehicleForm extends Component {
                   </label>
                   <label className={style.label}>
                     Kapazität der Fahrzeuge in kg:
-                    <input type="number" pattern="[0-9]*" className="u-full-width" placeholder={"Kapazität"} onChange={this.handleCapacity}/>
+                    <input type="number" pattern="[0-9]*" name="capacity" className="u-full-width" placeholder={"Kapazität"} onChange={this.handleChanges}/>
                   </label>
                   <label className={style.label}>
                     Anzahl der Fahrzeuge:
-                    <input type="number" pattern="[0-9]*" className="u-full-width" placeholder={"Anzahl"} onChange={this.handleNumber}/>
+                    <input type="number" pattern="[0-9]*" name="number" className="u-full-width" placeholder={"Anzahl"} onChange={this.handleChanges}/>
                   </label>
                     <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
                     <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
