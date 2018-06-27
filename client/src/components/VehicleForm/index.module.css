@@ -53,3 +53,23 @@
 :local(.label){
     font-weight: normal;
 }
+
+:local(.depot){
+    margin-top: 1.1rem;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+}
+
+:local(.streetname){
+    width: 78%;
+    margin-right: 2%;
+}
+
+:local(.number){
+    width: 20%;
+}
+
+:local(.place){
+    width: 100%;
+    margin-bottom: 2rem;
+}

@@ -13,13 +13,14 @@ class VehicleForm extends Component {
       speed_factor: 1,
       number: 1,
       capacity: [100],
-      vehicle_types: [],
-      vehicles: []
+      street: "Weberstr.",
+      street_number: "21",
+      place: "Zürich",
+      vehicle_types: []
     };
 
-    this.handleNumber = this.handleNumber.bind(this);
-    this.handleCapacity = this.handleCapacity.bind(this);
     this.handleValueOfDropDown = this.handleValueOfDropDown.bind(this);
+    this.handleChanges = this.handleChanges.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDeletion = this.handleDeletion.bind(this);
 
@@ -40,20 +41,19 @@ class VehicleForm extends Component {
 
   }
 
-  handleNumber(event){
-    const number = parseInt(event.target.value, 10);
-    this.setState({number: number})
-  }
+  handleChanges(event){
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
 
-  handleCapacity(event){
-    const capacity = parseInt(event.target.value, 10);
-    this.setState({capacity: [capacity]})
+    this.setState({
+      [name]: value
+    });
   }
 
   handleSubmit(event){
     //console.log(this.state)
     let currentVehicleTypes = this.state.vehicle_types;
-    let currentVehicles = this.state.vehicles;
     currentVehicleTypes.push(
       {
         type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
@@ -62,47 +62,31 @@ class VehicleForm extends Component {
         speed_factor: this.state.speed_factor,
         options: {
           number: this.state.number,
-          name: this.state.name
+          name: this.state.name,
+          depot: {
+              street: this.state.street,
+              street_number: this.state.street_number,
+              place: this.state.place
+
+          }
         }
       });
 
-    for(let i = this.state.number; i>0; i-- ){
-      currentVehicles.push(
-        {
-          vehicle_id: `vehicle_${this.state.vehicles.length +1}`,
-          start_address: {
-            location_id: "zuerich",
-            lon: 8.5033335 ,
-            lat: 47.3871498
-          },
-          type_id: `vehicle_type_${this.state.vehicle_types.length}`,
-          latest_end: 150000
-        })
-    }
       this.setState({
-        vehicle_types: currentVehicleTypes,
-        vehicles: currentVehicles
+        vehicle_types: currentVehicleTypes
       });
     this.props.sendVehicleTypes(this.state.vehicle_types);
-    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
   handleDeletion(event){
     let currentVehicleTypes = this.state.vehicle_types;
-    let currentVehicles = this.state.vehicles;
     currentVehicleTypes.pop();
-
-    for(let i = this.state.number; i>0; i-- ){
-      currentVehicles.pop();
-    }
 
     this.setState({
       vehicle_types: currentVehicleTypes,
-      vehicles: currentVehicles
     });
     this.props.sendVehicleTypes(this.state.vehicle_types);
-    this.props.sendVehicles(this.state.vehicles);
     event.preventDefault();
   }
 
@@ -117,29 +101,48 @@ class VehicleForm extends Component {
             <h4>Fahrzeugkonfiguration</h4>
           </div>
             <div className="row">
-              <div className="six columns">
-                <div className={style.form}>
-                  <label className={style.label}>
-                    Fahrzeugtyp:
-                    <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
-                      <option value='eVan'>eVan</option>
-                      <option value='trike'>Trike</option>
-                      <option value='bike'>Bike</option>
-                    </select>
-                  </label>
-                  <label className={style.label}>
-                    Kapazität der Fahrzeuge in kg:
-                    <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.capacity} onChange={this.handleCapacity}/>
-                  </label>
-                  <label className={style.label}>
-                    Anzahl der Fahrzeuge:
-                    <input type="number" pattern="[0-9]*" className="u-full-width" value={this.state.number} onChange={this.handleNumber}/>
-                  </label>
-                    <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
-                    <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
+              <div className="two-thirds column">
+                <div className="row">
+                  <div className="six columns">
+                    <div className={style.form}>
+                      <label className={style.label}>
+                        Fahrzeugtyp:
+                        <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
+                          <option value='eVan'>eVan</option>
+                          <option value='trike'>Trike</option>
+                          <option value='bike'>Bike</option>
+                        </select>
+                      </label>
+                      <label className={style.label}>
+                        Kapazität der Fahrzeuge in kg:
+                        <input type="number" pattern="[0-9]*" name="capacity" className="u-full-width" placeholder={"Kapazität"} onChange={this.handleChanges}/>
+                      </label>
+                      <label className={style.label}>
+                        Anzahl der Fahrzeuge:
+                        <input type="number" pattern="[0-9]*" name="number" className="u-full-width" placeholder={"Anzahl"} onChange={this.handleChanges}/>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="six columns">
+                    <div className={style.form}>
+                        <label className={style.label}>
+                          Straße des Depots:
+                          <input type="text"  name="street" className={style.streetname} placeholder={"Straße"} onChange={this.handleChanges}/>
+                          <input type="text"  name="street_number" className={style.number} placeholder={"Nr."} onChange={this.handleChanges}/>
+                        </label>
+                        <label className={style.label}>
+                          Ort des Depots:
+                          <input type="text"  name="place" className={style.place} placeholder={"Ort"} onChange={this.handleChanges}/>
+                        </label>
+                    </div>
+                  </div>
                 </div>
+              <div className="row">
+                <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
+                <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
               </div>
-              <div className="six columns">
+              </div>
+              <div className="one-third column">
                 <div className={style.list}>
                   <h6 className={style.headLineList}>Fahrzeuge:</h6>
                   {vehicleList}
