@@ -101,43 +101,46 @@ class VehicleForm extends Component {
             <h4>Fahrzeugkonfiguration</h4>
           </div>
             <div className="row">
-              <div className="one-third column">
-                <div className={style.form}>
-                  <label className={style.label}>
-                    Fahrzeugtyp:
-                    <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
-                      <option value='eVan'>eVan</option>
-                      <option value='trike'>Trike</option>
-                      <option value='bike'>Bike</option>
-                    </select>
-                  </label>
-                  <label className={style.label}>
-                    Kapazität der Fahrzeuge in kg:
-                    <input type="number" pattern="[0-9]*" name="capacity" className="u-full-width" placeholder={"Kapazität"} onChange={this.handleChanges}/>
-                  </label>
-                  <label className={style.label}>
-                    Anzahl der Fahrzeuge:
-                    <input type="number" pattern="[0-9]*" name="number" className="u-full-width" placeholder={"Anzahl"} onChange={this.handleChanges}/>
-                  </label>
-                    <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
-                    <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
+              <div className="two-thirds column">
+                <div className="row">
+                  <div className="six columns">
+                    <div className={style.form}>
+                      <label className={style.label}>
+                        Fahrzeugtyp:
+                        <select className="u-full-width"  onChange={this.handleValueOfDropDown}>
+                          <option value='eVan'>eVan</option>
+                          <option value='trike'>Trike</option>
+                          <option value='bike'>Bike</option>
+                        </select>
+                      </label>
+                      <label className={style.label}>
+                        Kapazität der Fahrzeuge in kg:
+                        <input type="number" pattern="[0-9]*" name="capacity" className="u-full-width" placeholder={"Kapazität"} onChange={this.handleChanges}/>
+                      </label>
+                      <label className={style.label}>
+                        Anzahl der Fahrzeuge:
+                        <input type="number" pattern="[0-9]*" name="number" className="u-full-width" placeholder={"Anzahl"} onChange={this.handleChanges}/>
+                      </label>
+                    </div>
+                  </div>
+                  <div className="six columns">
+                    <div className={style.form}>
+                        <label className={style.label}>
+                          Straße des Depots:
+                          <input type="text"  name="street" className={style.streetname} placeholder={"Straße"} onChange={this.handleChanges}/>
+                          <input type="text"  name="street_number" className={style.number} placeholder={"Nr."} onChange={this.handleChanges}/>
+                        </label>
+                        <label className={style.label}>
+                          Ort des Depots:
+                          <input type="text"  name="place" className={style.place} placeholder={"Ort"} onChange={this.handleChanges}/>
+                        </label>
+                    </div>
+                  </div>
                 </div>
+              <div className="row">
+                <button className={style.submit} onClick={this.handleSubmit}>Add Vehicle</button>
+                <button className={style.delete} onClick={this.handleDeletion}>Delete Vehicle</button>
               </div>
-              <div className="one-third column">
-                <div className={style.depot}>
-                 <h5>Depot</h5>
-                </div>
-                  <div className={style.form}>
-                    <label className={style.label}>
-                      Straße des Depots:
-                      <input type="text"  name="street" className={style.streetname} placeholder={"Straße"} onChange={this.handleChanges}/>
-                      <input type="text"  name="street_number" className={style.number} placeholder={"Nr."} onChange={this.handleChanges}/>
-                    </label>
-                    <label className={style.label}>
-                      Ort des Depots:
-                      <input type="text"  name="place" className={style.place} placeholder={"Ort"} onChange={this.handleChanges}/>
-                    </label>
-                </div>
               </div>
               <div className="one-third column">
                 <div className={style.list}>
