@@ -56,7 +56,7 @@ class VehicleForm extends Component {
     let currentVehicleTypes = this.state.vehicle_types;
     currentVehicleTypes.push(
       {
-        type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
+        type_id: this.state.vehicle_types.length +1  ,
         profile: this.state.profile,
         capacity: this.state.capacity,
         speed_factor: this.state.speed_factor,
