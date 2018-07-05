@@ -18,11 +18,12 @@ class App extends React.Component {
     this.state =  {
       vehicle_types: {},
       objectives: [],
-      stopps: {}
+      stopps: {},
     };
     this.getVehicleTypes = this.getVehicleTypes.bind(this);
     this.getOptimizationGoal = this.getOptimizationGoal.bind(this);
     this.getStopps = this.getStopps.bind(this);
+    this.createSettings = this.createSettings.bind(this)
   }
 
 
@@ -33,18 +34,29 @@ class App extends React.Component {
 
   getOptimizationGoal(goal){
     this.setState({objectives: [goal]}, () => {
-    console.log(this.state)})
+    console.log(this.state.objectives)})
   }
 
 
   getStopps(stopps){
     this.setState({stopps: stopps}, () => {
-      console.log(this.state.stopps)
+      console.log(this.state.objectives)
     })
   }
 
-  createSettings(){
+  createSettings() {
+    this.getState((curState) => {
+      console.log(curState)
+    })
   }
+
+  getState(callback) {
+    this.setState((prevState) => {
+      callback(prevState);
+    });
+  }
+
+
 
   render() {
     return (
