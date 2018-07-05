@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import './App.css';
 import './skeleton.css';
 import './normalize.css';
@@ -48,6 +49,11 @@ class App extends React.Component {
     this.getState((curState) => {
       console.log(curState)
     })
+
+    axios.post('http://localhost:3001/api/v1/calculateroute',{vehicleObject: this.state.vehicle_types, stopps: this.state.stopps, calculateObjective: this.state.objectives}).then((response) => {
+      debugger;
+      console.log('res from backend', response);
+    });
   }
 
   getState(callback) {
