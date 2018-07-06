@@ -43,8 +43,12 @@ class VehicleForm extends Component {
 
   handleChanges(event){
     const target = event.target;
-    const value = target.value;
+    let value = target.value;
+    if(target.name === "capacity"){
+      value = [parseInt(target.value, 10)]
+    }
     const name = target.name;
+
 
     this.setState({
       [name]: value

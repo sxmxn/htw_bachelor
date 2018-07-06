@@ -13,9 +13,9 @@ class Application extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 1.5
+      lng: this.props.value.features[0].properties.stopps[0].address.lon,
+      lat: this.props.value.features[0].properties.stopps[0].address.lat,
+      zoom: 10.8,
     };
   }
 
@@ -29,6 +29,33 @@ class Application extends React.Component {
       zoom
     });
 
+
+
+    map.on("load" , () => {
+
+      map.addLayer({
+        "id": "tour" ,
+        "type": "line",
+        "source": {
+          "type": "geojson",
+          "data": this.props.value
+
+        },
+        "layout": {
+          "line-join": "round",
+          "line-cap": "round"
+        },
+        "paint": {
+          "line-color": {type: 'identity', property: 'stroke'},
+          "line-opacity": {type: 'identity', property: 'stroke-opacity'},
+          "line-width": 2
+        }
+      });
+
+    })
+
+
+
     map.on('move', () => {
       const { lng, lat } = map.getCenter();
 
@@ -37,6 +64,7 @@ class Application extends React.Component {
         lat: lat.toFixed(4),
         zoom: map.getZoom().toFixed(2)
       });
+
     });
   }
 

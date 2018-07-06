@@ -20,6 +20,7 @@ class App extends React.Component {
       vehicle_types: {},
       objectives: [],
       stopps: {},
+      geoJSON: null,
     };
     this.getVehicleTypes = this.getVehicleTypes.bind(this);
     this.getOptimizationGoal = this.getOptimizationGoal.bind(this);
@@ -49,9 +50,17 @@ class App extends React.Component {
     this.getState((curState) => {
       console.log(curState)
     })
-    axios.post('http://localhost:3001/api/v1/calculateroute',{vehicleObject: this.state.vehicle_types, stopps: this.state.stopps, calculateObjective: this.state.objectives}).then((response) => {
-      debugger;
-      console.log('res from backend', response);
+    axios.post('http://localhost:3001/api/v1/calculateroute',
+      {
+        vehicleObject: this.state.vehicle_types,
+        stopps: this.state.stopps,
+        calculateObjective: this.state.objectives
+      }).then((response) => {
+      this.setState({geoJSON: response.data.geojson}, () => {
+        console.log(this.state)
+      })
+      //console.log('res from backend', response);
+
     });
   }
 
@@ -94,7 +103,12 @@ class App extends React.Component {
             </div>
           </div>
         </div>
-        <Map/>
+        { this.state.geoJSON !== null &&
+          <Map value={this.state.geoJSON}/>
+        }
+        { this.state.geoJSON === null &&
+          <p>Calculating data...</p>
+        }
       </div>
     );
   }
