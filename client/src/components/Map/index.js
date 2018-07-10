@@ -20,7 +20,7 @@ class Application extends React.Component {
       stopps: [],
     };
 
-      this.props.value.features.map((feature) => feature.properties.points.map((point) => {this.state.stopps.push(point)}))
+    this.props.value.features.map((feature) => feature.properties.points.map((point) => {this.state.stopps.push(point)}))
   }
 
   componentDidMount() {
@@ -110,6 +110,7 @@ class Application extends React.Component {
             <div ref={el => this.mapContainer = el} className={style.map} />
           </div>
         </div>
+        <button > Touren exportieren </button>
       </div>
     );
   }

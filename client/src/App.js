@@ -25,7 +25,14 @@ class App extends React.Component {
     this.getVehicleTypes = this.getVehicleTypes.bind(this);
     this.getOptimizationGoal = this.getOptimizationGoal.bind(this);
     this.getStopps = this.getStopps.bind(this);
-    this.createSettings = this.createSettings.bind(this)
+    this.createSettings = this.createSettings.bind(this);
+    this.handler = this.handler.bind(this);
+  }
+
+  handler() {
+    this.setState({
+      geoJSON: null
+    })
   }
 
 
@@ -98,8 +105,8 @@ class App extends React.Component {
           </div>
           <div className="container">
             <div className="row">
-                <button className="calculate" onClick={this.createSettings}>Berechnung starten</button>
-                <button className="calculate" onClick={() => {console.log(data)}}>Click ME</button>
+                <button className="calculate" onClick={this.createSettings || this.handler}>Berechnung starten</button>
+                <button className="calculate" onClick={this.handler}>Berechnung zurücksetzen</button>
             </div>
           </div>
         </div>
@@ -107,7 +114,7 @@ class App extends React.Component {
           <Map value={this.state.geoJSON}/>
         }
         { this.state.geoJSON === null &&
-          <p>Calculating data...</p>
+          <p>...</p>
         }
       </div>
     );
