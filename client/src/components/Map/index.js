@@ -16,7 +16,10 @@ class Application extends React.Component {
       lng: this.props.value.features[0].properties.stopps[0].address.lon,
       lat: this.props.value.features[0].properties.stopps[0].address.lat,
       zoom: 10.8,
+      stopps: [],
     };
+
+      this.props.value.features.map((feature) => feature.properties.points.map((point) => {this.state.stopps.push(point)}))
   }
 
   componentDidMount() {
@@ -49,6 +52,25 @@ class Application extends React.Component {
           "line-color": {type: 'identity', property: 'stroke'},
           "line-opacity": {type: 'identity', property: 'stroke-opacity'},
           "line-width": 2
+        }
+      });
+
+      map.addLayer({
+        "id": "points",
+        "type": "symbol",
+        "source": {
+          "type": "geojson",
+          "data": {
+            "type": "FeatureCollection",
+            "features": this.state.stopps
+          }
+        },
+        "layout": {
+          "icon-image": "{icon}-15",
+          "text-field": "{title}",
+          "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+          "text-offset": [0, 0.6],
+          "text-anchor": "top"
         }
       });
 
