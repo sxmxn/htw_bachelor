@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 import OptimizationGoalForm from "../OptimizationGoalForm";
+import ic from '../../Emblem_IC.png'
 
 import style from './index.module.css'
 
@@ -36,6 +37,11 @@ class Application extends React.Component {
 
     map.on("load" , () => {
 
+      map.loadImage(ic, function(error, image) {
+        if (error) throw error;
+        map.addImage('test', image);
+      })
+
       map.addLayer({
         "id": "tour" ,
         "type": "line",
@@ -66,10 +72,11 @@ class Application extends React.Component {
           }
         },
         "layout": {
-          "icon-image": "{icon}-15",
+          "icon-image": "test",
+          "icon-size": 0.23,
           "text-field": "{title}",
           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-          "text-offset": [0, 0.6],
+          "text-offset": [0,1.2],
           "text-anchor": "top"
         }
       });
