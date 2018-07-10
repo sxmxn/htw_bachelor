@@ -43,8 +43,12 @@ class VehicleForm extends Component {
 
   handleChanges(event){
     const target = event.target;
-    const value = target.value;
+    let value = target.value;
+    if(target.name === "capacity"){
+      value = [parseInt(target.value, 10)]
+    }
     const name = target.name;
+
 
     this.setState({
       [name]: value
@@ -56,7 +60,7 @@ class VehicleForm extends Component {
     let currentVehicleTypes = this.state.vehicle_types;
     currentVehicleTypes.push(
       {
-        type_id:`vehicle_type_${this.state.vehicle_types.length +1}`  ,
+        type_id: this.state.vehicle_types.length +1  ,
         profile: this.state.profile,
         capacity: this.state.capacity,
         speed_factor: this.state.speed_factor,
