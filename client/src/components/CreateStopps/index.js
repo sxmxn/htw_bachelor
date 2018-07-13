@@ -57,7 +57,7 @@ class CreateStopps extends Component {
 
   getJSON(obj){
     let currentAddress = this.state.stoppData;
-    obj.map(stopp => {this.state.stoppData.push(stopp)})
+    obj.map(stopp => {this.state.stoppData.push(stopp)});
     this.setState({
       stoppData: currentAddress
     });

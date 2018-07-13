@@ -13,8 +13,8 @@ class VehicleForm extends Component {
       speed_factor: 1,
       number: 1,
       capacity: [100],
-      street: "Weberstr.",
-      street_number: "21",
+      street: "Hohlstr.",
+      street_number: "400",
       place: "Zürich",
       vehicle_types: []
     };
