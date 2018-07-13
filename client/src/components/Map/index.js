@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom'
 import mapboxgl from 'mapbox-gl'
 import OptimizationGoalForm from "../OptimizationGoalForm";
 import ic from '../../Emblem_IC.png'
+import {CSVLink, CSVDownload} from 'react-csv';
 
 import style from './index.module.css'
 
@@ -20,7 +21,21 @@ class Application extends React.Component {
       stopps: [],
     };
 
+    this.createFile = this.createFile.bind(this);
+
     this.props.value.features.map((feature) => feature.properties.points.map((point) => {this.state.stopps.push(point)}))
+  }
+
+  createFile(){
+    const document = this.props.value.features.map((feature) => (
+      [{
+        vehicle: feature.properties.id,
+        stopps: feature.properties.stopps.map((stopp) => stopp.address.name),
+      }]))
+
+
+    return document
+    console.log(document)
   }
 
   componentDidMount() {
@@ -99,6 +114,24 @@ class Application extends React.Component {
 
   render() {
     const { lng, lat, zoom } = this.state;
+    const document = this.props.value.features.map((feature) => (
+      {
+        Fahrzeug: feature.properties.id,
+        Dauer: `${feature.properties.duration/60} Minuten`,
+        Streck: `${feature.properties.distance/1000} Kilomenter`,
+        Stopps:  feature.properties.stopps.map((stopp, index) => `${index+1}. ${stopp.address.name} \n \n  `).join('')
+      }));
+    const downloadLink  = {
+      padding: '9px 30px 9px 30px',
+      textAlign: 'center',
+      backgroundColor: '#33C3F0',
+      fontSize: 14,
+      fontWeight: 500,
+      textDecoration: 'none',
+      height: 52,
+      borderRadius: 5,
+      color: '#fff',
+    };
 
     return (
       <div className="container u-full-width u-max-full-width">
@@ -110,7 +143,9 @@ class Application extends React.Component {
             <div ref={el => this.mapContainer = el} className={style.map} />
           </div>
         </div>
-        <button > Touren exportieren </button>
+        <div className={style.exportButton}>
+          <CSVLink data={document} style={downloadLink} filename="optimized_Tour.csv">Touren exportieren</CSVLink>
+        </div>
       </div>
     );
   }
