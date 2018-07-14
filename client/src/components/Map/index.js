@@ -21,21 +21,7 @@ class Application extends React.Component {
       stopps: [],
     };
 
-    this.createFile = this.createFile.bind(this);
-
     this.props.value.features.map((feature) => feature.properties.points.map((point) => {this.state.stopps.push(point)}))
-  }
-
-  createFile(){
-    const document = this.props.value.features.map((feature) => (
-      [{
-        vehicle: feature.properties.id,
-        stopps: feature.properties.stopps.map((stopp) => stopp.address.name),
-      }]))
-
-
-    return document
-    console.log(document)
   }
 
   componentDidMount() {
@@ -54,7 +40,7 @@ class Application extends React.Component {
 
       map.loadImage(ic, function(error, image) {
         if (error) throw error;
-        map.addImage('test', image);
+        map.addImage('icLogo', image);
       })
 
       map.addLayer({
@@ -87,7 +73,7 @@ class Application extends React.Component {
           }
         },
         "layout": {
-          "icon-image": "test",
+          "icon-image": "icLogo",
           "icon-size": 0.23,
           "text-field": "{title}",
           "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
@@ -118,7 +104,7 @@ class Application extends React.Component {
       {
         Fahrzeug: feature.properties.id,
         Dauer: `${feature.properties.duration/60} Minuten`,
-        Streck: `${feature.properties.distance/1000} Kilomenter`,
+        Strecke: `${feature.properties.distance/1000} Kilomenter`,
         Stopps:  feature.properties.stopps.map((stopp, index) => `${index+1}. ${stopp.address.name} \n \n  `).join('')
       }));
     const downloadLink  = {
